@@ -26,7 +26,6 @@ export default function checkProperties(obj, properties) {
     const propName = getPropertyNameFromNameAndIndex(prop);
     const isArrayProp = checkIfPropIsArray(obj, propName);
     if (isArrayProp) {
-      if ((obj[propName][index]) !== undefined && (propsLength === 1)) return true;
       if (obj[propName][index] === undefined) return false;
       return checkProperties(obj[propName][index], props.join('.'));
     }
