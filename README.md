@@ -24,12 +24,9 @@ if (uop(obj, 'nested.datetime.time.hours.stringFormat')) return true
 And it will just return `true` if all properties are not undefined on the object or false if any of them are. If so, you should be responsible for finding out which of the properties is causing a problem, because actually **UOP** does not provide this functionality.
 
 ## Getting started
-- Install uop
 ```bash
 npm i --save @jorchgg/uop
 ```
-
-- Use it!
 ```js
 import uop from '@jorchgg/uop';
 const assert = require('assert');
@@ -46,8 +43,26 @@ const objWithNestedProperties = {
   },
 };
 
-assert(uop(objWithNestedProperties, 'nested.datetime.time.hours.stringFormat'), true);
-assert(uop(objWithNestedProperties, 'nested.inexistentProp.time.hours.stringFormat'), false);
+assert.strictEqual(uop(objWithNestedProperties, 'nested.datetime.time.hours.stringFormat'), true);
+assert.strictEqual(uop(objWithNestedProperties, 'nested.inexistentProp.time.hours.stringFormat'), false);
+
+// It also supports arrays
+const objWithNestedArray = {
+  'nested': {
+    'hours': [
+      {
+        'first': 9,
+      },
+      {
+        'second': 10
+      },
+    ],
+  },
+};
+
+assert.strictEqual(uop(objWithNestedArray, 'nested.hours[0].first'), true);
+assert.strictEqual(uop(objWithNestedArray, 'nested.hours[1].second'), true);
+assert.strictEqual(uop(objWithNestedArray, 'nested.hours[2].first'), false);
 ```
 
 `npm test` builds the library, then tests it.
