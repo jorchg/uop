@@ -24,6 +24,7 @@ if (uop(obj, 'nested.datetime.time.hours.stringFormat')) return true
 And it will just return `true` if all properties are not undefined on the object or false if any of them are. If so, you should be responsible for finding out which of the properties is causing a problem, because actually **UOP** does not provide this functionality.
 
 ## Getting started
+- Using the library
 ```bash
 npm i --save @jorchgg/uop
 ```
@@ -65,6 +66,7 @@ assert.strictEqual(uop(objWithNestedArray, 'nested.hours[1].second'), true);
 assert.strictEqual(uop(objWithNestedArray, 'nested.hours[2].first'), false);
 ```
 
+- Running the tests
 `npm test` builds the library, then tests it.
 
 ## License
