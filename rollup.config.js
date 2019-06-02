@@ -7,7 +7,7 @@ export default [
 	{
 		input: 'src/main.js',
 		output: {
-			name: 'uo',
+			name: 'uop',
 			file: pkg.browser,
 			format: 'umd'
 		},

@@ -1,14 +1,13 @@
 {
-  "name": "uo",
+  "name": "uop",
   "version": "1.0.0",
-  "main": "dist/uo.cjs.js",
-  "module": "dist/uo.esm.js",
-  "browser": "dist/uo.umd.js",
-  "dependencies": {
-
-  },
+  "main": "dist/uop.cjs.js",
+  "module": "dist/uop.esm.js",
+  "browser": "dist/uop.umd.js",
+  "dependencies": {},
   "devDependencies": {
-    "rollup": "^1.0.0",
+    "jest": "^24.8.0",
+    "rollup": "^1.13.1",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0"
   },
