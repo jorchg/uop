@@ -1,6 +1,7 @@
 # UOP
 
 [![Build Status](https://travis-ci.org/jorchg/uop.svg?branch=master)](https://travis-ci.org/jorchg/uop)
+[![Coverage Status](https://coveralls.io/repos/github/jorchg/uop/badge.svg?branch=master)](https://coveralls.io/github/jorchg/uop?branch=master)
 
 This repo contains a bare-bones example of how to create a library using Rollup, including importing a module from `node_modules` and converting it from CommonJS.
 
