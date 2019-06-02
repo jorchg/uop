@@ -4,6 +4,19 @@
   "main": "dist/uop.cjs.js",
   "module": "dist/uop.esm.js",
   "browser": "dist/uop.umd.js",
+  "description": "uop is a tiny package that helps strict undefined checking on objects with nested properties",
+  "author": "jorchg <rushcentro@gmail.com> (https://github.com/jorchg/uop)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jorchg/uop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jorchg/uop/issues"
+  },
+  "homepage": "https://github.com/jorchg/uop",
   "dependencies": {},
   "devDependencies": {
     "coveralls": "^3.0.3",
