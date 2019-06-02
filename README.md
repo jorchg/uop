@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jorchg/uop.svg?branch=master)](https://travis-ci.org/jorchg/uop)
 [![Coverage Status](https://coveralls.io/repos/github/jorchg/uop/badge.svg?branch=master)](https://coveralls.io/github/jorchg/uop?branch=master)
 
-**UOP** is a tiny library which works on Node and browser which simply checks for undefined properties or nested properties on objects. We all have seen even in highly-skilled developers groups checking for undefined properties like:
+**UOP** stands for **Undefined Object Properties** and is a tiny library which works on Node and browser which simply checks for undefined properties or nested properties on objects. We all have seen even in highly-skilled developers groups checking for undefined properties like:
 
 ```js
 if (
