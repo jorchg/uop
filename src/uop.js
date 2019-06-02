@@ -1,16 +1,16 @@
-function couldBeArrayProp(prop = '') {
+function couldBeArrayProp(prop) {
   return  prop.includes('[') && prop.includes(']');
 }
 
-function getPropertyIndexFromPropName(propName = '') {
+function getPropertyIndexFromPropName(propName) {
   return parseInt(propName.split('[')[1].split(']'), 10);
 }
 
-function getPropertyNameFromNameAndIndex(prop = '') {
+function getPropertyNameFromNameAndIndex(prop) {
   return prop.split('[')[0];
 }
 
-function checkIfPropIsArray(obj = {}, prop = '') {
+function checkIfPropIsArray(obj, prop) {
   return ((typeof (obj[prop]) === 'object') && (obj[prop].length !== undefined));
 }
 

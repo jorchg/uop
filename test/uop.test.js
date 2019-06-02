@@ -46,6 +46,12 @@ describe('Uop use cases', () => {
     expect(isValid).toBe(false);
   });
 
+  test('It throws a TypeError if first argument is not an object', () => {
+    expect(() => {
+      uop(null, 'a');
+    }).toThrow(TypeError);
+  });
+
   test('It returns true on empty properties', () => {
     const isValid = uop(simpleNested, '');
     expect(isValid).toBe(true);
@@ -81,16 +87,6 @@ describe('Uop use cases', () => {
     expect(isValid).toBe(true);
   });
 
-  test('It returns true on non-undefined property on empty array', () => {
-    const objToTest = {
-      'nested': {
-        'arr': [],
-      }
-    };
-    const onlyArrayProp = uop(objToTest, 'nested.arr');
-    expect(onlyArrayProp).toBe(true);
-  });
-
   test('It returns false on undefined index on empty array', () => {
     const objToTest = {
       'nested': {
@@ -99,6 +95,16 @@ describe('Uop use cases', () => {
     };
     const onlyArrayProp = uop(objToTest, 'nested.arr[0]');
     expect(onlyArrayProp).toBe(false);
+  });
+
+  test('It returns true on non-undefined property on empty array', () => {
+    const objToTest = {
+      'nested': {
+        'arr': [],
+      }
+    };
+    const onlyArrayProp = uop(objToTest, 'nested.arr');
+    expect(onlyArrayProp).toBe(true);
   });
   
   test('It returns true on non-undefined property with array-like name', () => {
