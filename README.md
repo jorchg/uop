@@ -29,7 +29,7 @@ And it will just return `true` if all properties are not undefined on the object
 npm i --save @jorchgg/uop
 ```
 ```js
-import uop from '@jorchgg/uop';
+const uop = require('@jorchgg/uop');
 const assert = require('assert');
 
 const objWithNestedProperties = {
