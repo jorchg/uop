@@ -6,6 +6,7 @@
   "browser": "dist/uop.umd.js",
   "dependencies": {},
   "devDependencies": {
+    "coveralls": "^3.0.3",
     "jest": "^24.8.0",
     "rollup": "^1.13.1",
     "rollup-plugin-commonjs": "^9.2.0",
@@ -14,7 +15,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "jest --coverage",
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "pretest": "npm run build"
   },
   "files": [
