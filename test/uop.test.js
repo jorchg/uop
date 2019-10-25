@@ -22,7 +22,7 @@ describe('Uop use cases', () => {
         },
         {
           'nested': {
-            'a': 'a',
+            'a': 'b',
           },
         },
       ],
@@ -41,9 +41,9 @@ describe('Uop use cases', () => {
     }).toThrow(TypeError);
   });
 
-  test('It returns false on empty object', () => {
+  test('It returns null on empty object', () => {
     const isValid = uop({}, 'nested');
-    expect(isValid).toBe(false);
+    expect(isValid).toBe(null);
   });
 
   test('It throws a TypeError if first argument is not an object', () => {
@@ -52,62 +52,67 @@ describe('Uop use cases', () => {
     }).toThrow(TypeError);
   });
 
-  test('It returns true on empty properties', () => {
+  test('It returns the object on empty properties', () => {
     const isValid = uop(simpleNested, '');
-    expect(isValid).toBe(true);
+    expect(isValid).toBe(simpleNested);
   });
   
-  test('It returns true on non-undefined object property', () => {
-    const isValid = uop(simpleNested, 'nested.nested')
-    expect(isValid).toBe(true);
+  test('It returns the value on non-undefined object property', () => {
+    const value = {
+      'nested': {
+        'a': 'a',
+      },
+    };
+    const isValid = uop(simpleNested, 'nested.nested');
+    expect(isValid).toStrictEqual(value);
   });
   
-  test('It returns true on non-undefined non-object property', () => {
+  test('It returns the value on non-undefined non-object property', () => {
     const isValid = uop(simpleNested, 'nested.nested.nested.a')
-    expect(isValid).toBe(true);
+    expect(isValid).toBe('a');
   });
   
-  test('It returns false on undefined property', () => {
+  test('It returns null on undefined property', () => {
     const isValid = uop(simpleNested, 'nested.nested.nested.nested');
-    expect(isValid).toBe(false);
+    expect(isValid).toBe(null);
   });
   
-  test('It returns false on undefined non-object property', () => {
+  test('It returns null on undefined non-object property', () => {
     const isValid = uop(simpleNested, 'nested.nested.nested.b');
-    expect(isValid).toBe(false);
+    expect(isValid).toBe(null);
   });
   
-  test('It returns true on non-undefined property on array', () => {
+  test('It returns value on non-undefined property on array', () => {
     const isValid = uop(arrayNested, 'nested.nested[0].nested.a');
-    expect(isValid).toBe(true);
+    expect(isValid).toBe('a');
   });
 
-  test('It returns true on non-undefined property on array', () => {
-    const isValid = uop(arrayNested, 'nested.nested[0].nested.a');
-    expect(isValid).toBe(true);
+  test('It returns value on non-undefined property on array', () => {
+    const isValid = uop(arrayNested, 'nested.nested[1].nested.a');
+    expect(isValid).toBe('b');
   });
 
-  test('It returns false on undefined index on empty array', () => {
+  test('It returns null on undefined index on empty array', () => {
     const objToTest = {
       'nested': {
         'arr': [],
       }
     };
     const onlyArrayProp = uop(objToTest, 'nested.arr[0]');
-    expect(onlyArrayProp).toBe(false);
+    expect(onlyArrayProp).toBe(null);
   });
 
-  test('It returns true on non-undefined property on empty array', () => {
+  test('It returns empty array on non-undefined property on empty array', () => {
     const objToTest = {
       'nested': {
         'arr': [],
       }
     };
     const onlyArrayProp = uop(objToTest, 'nested.arr');
-    expect(onlyArrayProp).toBe(true);
+    expect(onlyArrayProp).toStrictEqual([]);
   });
   
-  test('It returns true on non-undefined property with array-like name', () => {
+  test('It returns value on non-undefined property with array-like name', () => {
     const objToTest = {
       'nested': {
         'nested[0]': 'a'
@@ -115,6 +120,6 @@ describe('Uop use cases', () => {
     };
     
     const isValid = uop(objToTest, 'nested.nested[0]');
-    expect(isValid).toBe(true);
+    expect(isValid).toStrictEqual('a');
   });
 });
