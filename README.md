@@ -21,7 +21,8 @@ This is awful and we all should avoid it. It is frequently common also the other
 ```js
 if (uop(obj, 'nested.datetime.time.hours.stringFormat')) return true
 ```
-And it will just return `true` if all properties are not undefined on the object or false if any of them are. If so, you should be responsible for finding out which of the properties is causing a problem, because actually **UOP** does not provide this functionality.
+And it will just return the value of the property if all nested properties are not undefined on the object or `null` if any of them are. If so, you should be responsible for finding out which of the properties is causing a problem, because actually **UOP** does not provide this functionality.
+
 
 ## Getting started
 - Using the library
@@ -44,8 +45,8 @@ const objWithNestedProperties = {
   },
 };
 
-assert.strictEqual(uop(objWithNestedProperties, 'nested.datetime.time.hours.stringFormat'), true);
-assert.strictEqual(uop(objWithNestedProperties, 'nested.inexistentProp.time.hours.stringFormat'), false);
+assert.strictEqual(uop(objWithNestedProperties, 'nested.datetime.time.hours.stringFormat'), 'Sun, 02 Jun 2019 17:40:59 GMT');
+assert.strictEqual(uop(objWithNestedProperties, 'nested.inexistentProp.time.hours.stringFormat'), null);
 
 // It also supports arrays
 const objWithNestedArray = {
@@ -61,9 +62,9 @@ const objWithNestedArray = {
   },
 };
 
-assert.strictEqual(uop(objWithNestedArray, 'nested.hours[0].first'), true);
-assert.strictEqual(uop(objWithNestedArray, 'nested.hours[1].second'), true);
-assert.strictEqual(uop(objWithNestedArray, 'nested.hours[2].first'), false);
+assert.strictEqual(uop(objWithNestedArray, 'nested.hours[0].first'), 9);
+assert.strictEqual(uop(objWithNestedArray, 'nested.hours[1].second'), 10);
+assert.strictEqual(uop(objWithNestedArray, 'nested.hours[2].first'), null);
 ```
 
 - Running the tests
