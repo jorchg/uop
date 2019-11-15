@@ -26,7 +26,44 @@ describe('Uop use cases', () => {
           },
         },
       ],
-    }
+    },
+  };
+
+  const nullNested = {
+    'nested:': {
+      null: {
+        'nested': {
+          'a': 'a',
+        },
+      },
+    },
+    null: {
+      'nested': {
+        'a': 'a',
+      },
+    },
+  };
+
+  const simpleNull = {
+    null: null,
+  };
+
+  const nullString = {
+    null: 'null',
+  };
+
+  const nullAsString = {
+    'null': null,
+  };
+
+  const undefinedNested = {
+    'nested': {
+      undefined: {
+        'nested': {
+          'a': 'a',
+        },
+      },
+    },
   };
 
   test('It throws a TypeError if first argument is not an object', () => {
@@ -121,5 +158,34 @@ describe('Uop use cases', () => {
     
     const isValid = uop(objToTest, 'nested.nested[0]');
     expect(isValid).toStrictEqual('a');
+  });
+
+  test('It returns null on parent null nested property', () => {
+    const isNull = uop(nullNested, 'nested.nested.a');
+    expect(isNull).toBe(null);
+  });
+
+  test('It returns null on null property', () => {
+    expect(() => {
+      uop(simpleNull, null);
+    }).toThrow(TypeError);
+  });
+
+  test('It returns null on null', () => {
+    expect(() => {
+      uop(null, null);
+    }).toThrow(TypeError);
+  });
+
+  test('It returns null on nullString', () => {
+    expect(() => {
+      uop(nullString, null);
+    }).toThrow(TypeError);
+  });
+
+  test('It returns null on nullAsString', () => {
+    expect(() => {
+      uop(nullAsString, null);
+    }).toThrow(TypeError);
   });
 });
