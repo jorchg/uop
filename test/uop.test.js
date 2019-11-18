@@ -56,13 +56,9 @@ describe('Uop use cases', () => {
     'null': null,
   };
 
-  const undefinedNested = {
+  const objNullProperty = {
     'nested': {
-      undefined: {
-        'nested': {
-          'a': 'a',
-        },
-      },
+      'nested': null,
     },
   };
 
@@ -187,5 +183,10 @@ describe('Uop use cases', () => {
     expect(() => {
       uop(nullAsString, null);
     }).toThrow(TypeError);
+  });
+
+  test('It returns null when there is a null ancestor', () => {
+    const isNull = uop(objNullProperty, 'nested.nested.nested');
+    expect(isNull).toBe(null);
   });
 });

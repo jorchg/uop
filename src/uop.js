@@ -26,12 +26,12 @@ export default function checkProperties(obj, properties) {
     const propName = getPropertyNameFromNameAndIndex(prop);
     const isArrayProp = checkIfPropIsArray(obj, propName);
     if (isArrayProp) {
-      if (obj[propName][index] === undefined) return null;
+      if (obj[propName][index] === undefined || obj[propName[index]] === null) return null;
       return checkProperties(obj[propName][index], props.join('.'));
     }
   }
-
-  if ((obj[prop] !== undefined) && (propsLength === 1)) return obj[prop];
-  if (obj[prop] === undefined) return null;
+  
+  if ((obj[prop] !== undefined && obj[prop] !== null) && (propsLength === 1)) return obj[prop];
+  if (obj[prop] === undefined || obj[prop] === null) return null;
   return checkProperties(obj[prop], props.join('.'));
 }
