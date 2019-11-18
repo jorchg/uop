@@ -1,6 +1,6 @@
 {
   "name": "@jorchgg/uop",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "dist/uop.cjs.js",
   "module": "dist/uop.esm.js",
   "browser": "dist/uop.umd.js",
